@@ -1,0 +1,270 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Sora:wght@400;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI,
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+:root {
+  --hero-gradient: radial-gradient(
+      1200px 600px at 20% 0%,
+      rgba(108, 92, 231, 0.25) 0%,
+      rgba(12, 12, 20, 0) 60%
+    ),
+    radial-gradient(
+      1000px 600px at 100% 100%,
+      rgba(192, 132, 252, 0.25) 0%,
+      rgba(12, 12, 20, 0) 60%
+    );
+}
+
+/* Global background: dark + textured grain + purple gradient */
+body {
+  background-color: #07070e;
+  background-image: var(--hero-gradient, none);
+  color: #e6e8f0;
+}
+
+.bg-hero {
+  background-color: #07070e;
+  background-image: var(--hero-gradient, none);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* Subtle grain overlay */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("/src/assets/grain.png");
+  mix-blend-mode: overlay;
+  opacity: 0.08;
+  z-index: 0;
+}
+
+/* Fallback noise using CSS filter if grain.png missing */
+.grain-fallback::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.02) 0 1px,
+      transparent 1px 2px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.02) 0 1px,
+      transparent 1px 2px
+    );
+  filter: contrast(120%);
+  mix-blend-mode: overlay;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+/* Panel surface (rounded, subtle border like in reference) */
+.panel-surface {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.02)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 28px;
+}
+
+/* Pills */
+.pill {
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Neon button */
+.btn-primary {
+  background-image: linear-gradient(
+    90deg,
+    #6c5ce7 0%,
+    #8a4dff 50%,
+    #c084fc 100%
+  );
+  border-radius: 9999px;
+  color: white;
+  box-shadow: 0 10px 30px rgba(108, 92, 231, 0.35);
+}
+
+/* Grid overlay used in cards/hero */
+.grid-overlay {
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.06) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px;
+  background-position: -1px -1px, -1px -1px;
+}
+
+/* Hover cursor glow utility for cards */
+.hover-glow {
+  position: relative;
+  overflow: hidden;
+}
+.hover-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(
+    200px circle at var(--x, 50%) var(--y, 50%),
+    rgba(138, 77, 255, 0.18),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 250ms ease;
+  pointer-events: none;
+}
+.hover-glow:hover::before {
+  opacity: 1;
+}
+
+.hash-span {
+  margin-top: -100px;
+  padding-bottom: 100px;
+  display: block;
+}
+
+.black-gradient {
+  background: #000000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #434343,
+    #000000
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #434343,
+    #000000
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.violet-gradient {
+  background: #6c5ce7;
+  background: linear-gradient(90deg, #6c5ce7 0%, #c084fc 100%);
+  background: -webkit-linear-gradient(90deg, #6c5ce7 0%, #c084fc 100%);
+}
+
+.green-pink-gradient {
+  background: "#00cea8";
+  background: linear-gradient(90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
+  background: -webkit-linear-gradient(-90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
+}
+
+.orange-text-gradient {
+  background: #f12711; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #f12711,
+    #f5af19
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #f12711,
+    #f5af19
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.green-text-gradient {
+  background: #11998e; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #11998e,
+    #38ef7d
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #11998e,
+    #38ef7d
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.blue-text-gradient {
+  /* background: -webkit-linear-gradient(#eee, #333); */
+  background: #56ccf2; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #2f80ed,
+    #56ccf2
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #2f80ed,
+    #56ccf2
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pink-text-gradient {
+  background: #ec008c; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #ec008c,
+    #fc6767
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #ec008c,
+    #fc6767
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glassmorphism utility */
+.glass-card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.02)
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+}
+
+.glass-card:hover {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+    0 20px 60px rgba(96, 55, 255, 0.25);
+}
+
+.glass-focus:focus-visible {
+  outline: 2px solid #c084fc;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
