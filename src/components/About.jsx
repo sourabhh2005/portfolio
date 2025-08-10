@@ -19,7 +19,7 @@ const ServiceCard = ({ index, title, icon }) => (
         t.style.setProperty("--y", `${e.clientY - r.top}px`);
       }}
     >
-      <img src={icon} alt={title} className="w-16 h-16 object-contain mb-4" />
+      <img src={icon} alt={title} className="w-16  h-16 object-contain mb-4" />
       <h3 className="text-white text-[18px] font-semibold text-center">
         {title}
       </h3>
